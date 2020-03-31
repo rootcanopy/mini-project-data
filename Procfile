@@ -1,1 +1,1 @@
-web: python task.py
+web: python3 task.py
