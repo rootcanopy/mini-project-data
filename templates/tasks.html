@@ -12,7 +12,7 @@
 
             <div class="col s2">
                 <div class="inline_action">
-                    <a class="waves-effect waves-light btn btn-small">Done</a>
+                    <a href="{{ url_for('delete_task', task_id=task._id) }}" class="waves-effect waves-light btn btn-small">Done</a>
                     <a href="{{ url_for('edit_task', task_id=task._id) }}" class="waves-effect waves-light btn btn-small blue">Edit</a>
                 </div>  
             </div>
@@ -26,7 +26,6 @@
         <div class="collapsible-body">
             <span><p>Description: {{ task.task_description }}</p> - <p>Urgency: {{ task.is_urgent }}</p></span>
             <p>Category: {{ task.category_name }}</p>
-            <p></p>
         </div>
     </li>
 
