@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Base_HTML</title>
@@ -9,41 +10,59 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
-    
+
 </head>
+
 <body>
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#!" class="brand-logo">Task Manager</a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li class="active"><a href="{{ url_for('add_task') }}">Add Tasks</a></li>
+                    <li><a href="{{ url_for('get_tasks') }}">Open Tasks</a></li>
+                    <li><a href="{{ url_for('get_categories') }}">Categories</a></li>
+                </ul>
+
+                <ul id="mobile-demo" class="sidenav custom_nav">
+                    <li><a href="{{ url_for('add_task') }}">Add Tasks</a></li>
+                    <li><a href="{{ url_for('get_tasks') }}">Open Tasks</a></li>
+                    <li><a href="{{ url_for('get_categories') }}">Categories</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
     <div class="container">
-    <nav>
-        <div class="nav-wrapper">
-          <a href="#" class="brand-logo">Logo</a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="{{ url_for('add_task') }}">Add Tasks</a></li>
-            <li><a href="{{ url_for('get_tasks') }}">Tasks</a></li>
-            <li><a href="{{ url_for('get_categories') }}">Categories</a></li>
-            
-          </ul>
-        </div>
-      </nav>
-
-    {% block content %}
 
 
-    {% endblock %}
+        {% block content %}
+
+
+        {% endblock %}
     </div>
 </body>
-    <!-- scripts JQUERY-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- scripts JS-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <!-- scripts JQUERY-->
-    <script type="text/javascript">
+<!-- scripts JQUERY-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- scripts JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<!-- scripts JQUERY-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.collapsible').collapsible();
+    });
 
-        $(document).ready(function() {
-            $('.collapsible').collapsible();
-            $('select').material_select();
-        });
+    $(document).ready(function () {
+        $('select').material_select();
+    });
 
-        $('.datepicker').pickadate ({
+    $(document).ready(function () {
+        $('.sidenav').sidenav();
+    });
+
+    $(document).ready(function () {
+        $('.datepicker').pickadate({
             selectMonths: true,
             selectYears: 15,
             today: 'Today',
@@ -51,20 +70,25 @@
             close: 'Ok',
             closeOnSelect: false,
         });
+    });
 
+    document.getElementById("matfix").addEventListener("click", function (e) {
+        e.stopPropagation();
+    });
 
-        document.getElementById("matfix").addEventListener("click", function(e) {
-	        e.stopPropagation();
-        });
+    document.getElementById("mobile-demo").addEventListener("click", function(event){
+        style.display = "block";
+    })
 
-        const calender = document.getElementsByClassName("datepicker");
-
-        window.onlick = function(event) {
-            if (event.target == calender) {
-                calender.style.display = "none";
-            }
-        }
-
-    </script>
     
+
+    const calender = document.getElementsByClassName("datepicker");
+
+    window.onlick = function (event) {
+        if (event.target == calender) {
+            calender.style.display = "none";
+        }
+    };
+</script>
+
 </html>

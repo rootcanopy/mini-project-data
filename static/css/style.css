@@ -16,3 +16,7 @@ h3 {
 .task_header {
     margin-top: 0;
 }
+
+.custom_nav {
+    display: none;
+}
